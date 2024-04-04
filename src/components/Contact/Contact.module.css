@@ -1,0 +1,72 @@
+.listItem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 12px;
+    width: 360px;
+    font-size: 24px;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+
+}
+
+.listItem:hover {
+    transform:scale(1.05)
+}
+
+
+.wrap {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 12px;
+}
+.infoBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+}
+
+.nameId {
+    width: 200px; 
+    white-space: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+}
+
+.button {
+    margin-left: auto;
+    width: 72px;
+    height: 32px;
+    padding: 8px;
+    font-size: 16px;
+    background-color:rgb(107, 153, 155);
+    border: none;
+    border-radius: 4px;
+}
+
+.button:hover {
+    background-color:rgb(54, 91, 93);
+
+}
+
+@media screen and (max-width: 767px) {
+    .listItem {
+        width: 300px;
+    }
+
+    .nameId {
+        width: 150px; 
+        font-size: 16px;
+        
+    }
+
+    .numberId {
+        font-size: 16px;
+    }
+}

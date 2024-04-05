@@ -1,0 +1,6 @@
+.link {
+    transition: all var(--td) var(--ttf);
+  }
+  .isActive {
+    color: rgb(114, 161, 204);
+  }

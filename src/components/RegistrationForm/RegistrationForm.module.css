@@ -1,0 +1,13 @@
+.link {
+    margin: 0;
+    font: inherit;
+    color: #1976d2;
+    -webkit-text-decoration: underline;
+    text-decoration: underline;
+    text-decoration-color: rgba(25, 118, 210, 0.4);
+  }
+  
+  .error {
+    color: orangered;
+    font-size: 14px;
+  }

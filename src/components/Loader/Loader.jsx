@@ -9,7 +9,7 @@ return (
   height="80"
   width="80"
   radius="9"
-  color="rgb(54, 91, 93)"
+  color="rgb(114, 161, 204)"
   ariaLabel="loading"
   wrapperStyle
   wrapperClass

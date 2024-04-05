@@ -1,9 +1,17 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import css from '../ContactForm/ContactForm.module.css';
 import * as Yup from 'yup';
-import { useId } from 'react';
+import css from './ContactForm.module.css';
 import { useDispatch } from 'react-redux';
-import { addContact } from '../../redux/contactsOps';
+import { addContact } from '../../redux/contacts/operations';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import toast from 'react-hot-toast';
+
 
 const FeedbackSchema = Yup.object().shape({
   name: Yup.string()
@@ -18,41 +26,75 @@ const FeedbackSchema = Yup.object().shape({
     .required("Required"),
 });
 
+const defaultTheme = createTheme();
 
 const ContactForm = () => {
-  const elementId = useId();
   const dispatch = useDispatch();
   
-  const handleSubmit = (value, actions) => {
-    dispatch(addContact(value));
+  const handleSubmit = (values, actions) => {
+    dispatch(addContact(values))
+      .unwrap()
+      .catch(() =>
+        toast.error('Oops... Something went wrong', {
+          id: 'error',
+        })
+      );
     actions.resetForm();
-
   };
     
   return (
-    <Formik
-      initialValues={{ name: "", number: "" }}
-      onSubmit={handleSubmit}
-      validationSchema={FeedbackSchema}
-    >
-      <Form className={css.wrapForm}>
-        <label className={css.label} htmlFor={elementId + '-name'}>
-          Name
-          <Field className={css.input} type="text" name="name" id={elementId + '-name'} placeholder="Name"/>
-          <ErrorMessage className={css.error} name="name" component="div" />
-        </label>
-
-        <label className={css.label} htmlFor={elementId + '-number'}>
-          Number
-          <Field className={css.input} type="tel" name="number" id={elementId + '-number'} placeholder="XXX-XX-XX"/>
-          <ErrorMessage className={css.error} name="number" component="div" />
-        </label>
-
-        <button className={css.button} type="submit">
-          Add contact
-        </button>
-      </Form>
-    </Formik>
+    <div className={css.container}>
+      <ThemeProvider theme={defaultTheme}>
+        <Container component="main" maxWidth="xs">
+          <CssBaseline />
+          <Box 
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <Box component="div" sx={{ mt: 3 }}>
+              <Formik
+                initialValues={{ name: '', number: '' }}
+                onSubmit={handleSubmit}
+                validationSchema={FeedbackSchema}
+              >
+                <Form>
+                  <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                      <Field 
+                        as={TextField}
+                        fullWidth
+                        id="name"
+                        label="Name"
+                        name="name"
+                        autoComplete="name"
+                      />
+                      <ErrorMessage name="name" className={css.error} component="div" />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Field 
+                        as={TextField}
+                        fullWidth
+                        name="number"
+                        label="Number"
+                        id="number"
+                        autoComplete="new-number"
+                      />
+                      <ErrorMessage name="number" className={css.error} component="div" />
+                    </Grid>
+                  </Grid>
+                  <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+                    Add Contact
+                  </Button>
+                </Form>
+              </Formik>
+            </Box>
+          </Box>
+        </Container>
+      </ThemeProvider>
+    </div>
   );
 };
 

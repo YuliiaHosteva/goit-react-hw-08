@@ -1,14 +1,18 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Roboto, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(to right, rgb(89, 177, 215),
-   rgb(61, 111, 128),
-   rgb(100, 156, 181));
+
+  --td: 150ms;
+  --ttf: ease-in-out;
+  --dull-color: #c9d6ff;
+  --blue-color: rgb(55 112 210);
+
+
 }
 
 
@@ -19,6 +23,15 @@
   text-decoration: none;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
 
 img {
   display: block;
@@ -27,4 +40,13 @@ img {
 
 ul {
   list-style: none;
+}
+
+body {
+  background-image: url('https://fastly.picsum.photos/id/733/5000/3334.jpg?hmac=2Mj2SzPVNtM_xL3gA2rfRnHZgQ6PtJr8yvcVTwhpUfE');
+  background-size: cover;
+  background-position: center;
+  height: 100vh; /* Замініть на 100vh, щоб фон заповнював висоту екрану */
+  margin: 0; /* Прибрати зовнішні відступи */
+  padding: 0; /* Прибрати внутрішні відступи */
 }
